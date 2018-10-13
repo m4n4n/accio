@@ -60,3 +60,6 @@ footer.page-footer {
 
 .parallax > img {
   height: 100vh; }
+
+.hide {
+  display: none; }

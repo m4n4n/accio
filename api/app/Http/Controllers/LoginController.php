@@ -6,14 +6,13 @@ use Illuminate\Http\Request;
 use Validator;
 use Auth;
 
-class MainController extends Controller
+class LoginController extends Controller
 {
-    function index()
+    function checklogin()
     {
-    	return view('login');
+        return Auth::user();
     }
-    
-    function checklogin(Request $request)
+    function login(Request $request)
     {
     	$this->validate($request, [
     		'email' => 'required|email',
@@ -23,27 +22,21 @@ class MainController extends Controller
     	$user_data = array(
     		'email' => $request->get('email'),
     		'password'=> $request->get('password')
-
     	);
 
-    	if(Auth::attempt($user_data))
-    		{
-    			return redirect('main/successlogin');
-    		}
-    	else
+    	if(!Auth::attempt($user_data))
     	{
-    		return back()->with('error','Wrong Login Details');
+    		abort(401, "Wrong Credentials");
     	}
+
+        return Auth::user();
     }
-    function successlogin()
-    {
-    	return view('successlogin');
-    }
+
 
     function logout()
     {
     	Auth::logout();
-    	return redirect('main');
+        return;
     }
 }
 

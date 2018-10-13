@@ -11,15 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('login','LoginController@login');
+Route::get('checklogin', 'LoginController@checklogin');
 
-Route::get('/main','MainController@index');
+Route::get('register', 'RegistrationController@store');
 
-Route::get('/register', 'RegistrationController@create');
-Route::post('register', 'RegistrationController@store');
-
-Route::post('/main/checklogin','MainController@checklogin' );
-Route::get('main/successlogin', 'MainController@successlogin');
-Route::get('main/logout', 'MainController@logout');
+Route::get('logout', 'LoginController@logout');
