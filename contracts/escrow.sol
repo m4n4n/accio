@@ -1,32 +1,38 @@
 pragma solidity ^0.4.17;
 
-import "./Ownable.sol"
+import "./Ownable.sol";
 
 contract Pay is Ownable{
     struct Transaction {
         address sender;
         address courier;
         uint transaction_id;
-        bool sender_paid=false, courier_paid=false;
+        uint courier_eth;
+        uint sender_eth;
+        bool sender_paid;
+        bool courier_paid;
     }
 
     event transaction_created(uint transactionId);
     event eth_received(address _address, uint amount, string role);
     Transaction[] public transactions;
 
-    function createTransaction (address sender, address courier. uint transaction_id) internal onlyOwner{
-        Transaction _transaction = (sender, courier, transaction_id, false);
-        int transactionReference = transactions.push(_transaction)-1;
+    function createTransaction (address sender, address courier, uint transaction_id, uint courier_eth, uint sender_eth) internal onlyOwner{
+        uint transactionReference = transactions.push(Transaction(sender, courier, transaction_id, courier_eth, sender_eth, false, false))-1;
         emit transaction_created(transactionReference);
     }
 
     function holdInEscrow (uint transaction_id, string role) public payable {
-        if(keccak256(role) == "7fc3771f539a03c47afbbf258702c19273ef5e735e24ee7978081dc07288c687" && msg.value == transactions[transaction_id].courier_eth) { //check if courier
+        if(keccak256(role) == keccak256("courier") ) {
+            if(msg.value == transactions[transaction_id].courier_eth) {
             emit eth_received(msg.sender, msg.value, "courier");
+            }
         }
         else {
-            if(keccak256(role) == "168e92ce035ba45e59a0314b0ed9a9e619b284aed8f6e5ab0a596efd5c9f5cf9" && msg.value == transactions[transaction_id].sender_eth) { //check if sender
+            if(keccak256(role) == keccak256("sender")) { 
+                if(msg.value == transactions[transaction_id].sender_eth){
                 emit eth_received(msg.sender, msg.value, "sender");
+                }
             }
             else
                 throw;
@@ -35,7 +41,7 @@ contract Pay is Ownable{
 
 
     function release_funds(uint transaction_id) private onlyOwner{
-        address courier = transactions[transaction_id];
+        address courier = transactions[transaction_id].courier;
         uint money = transactions[transaction_id].sender_eth + transactions[transaction_id].courier_eth;
         courier.transfer(money);
     }
@@ -43,10 +49,11 @@ contract Pay is Ownable{
     function cancel_transaction(uint transaction_id) private onlyOwner{
         Transaction local_transaction = transactions[transaction_id];
         uint sender_eth = local_transaction.sender_eth;
-        uint courier_eth = local.transaction.courier_eth;
+        uint courier_eth = local_transaction.courier_eth;
         address sender_local = local_transaction.sender;
         address courier_local = local_transaction.courier;
 
-        sender.transfer(sender_eth);
-        courier.transfer(courier_eth);
+        sender_local.transfer(sender_eth);
+        courier_local.transfer(courier_eth);
     }
+}
