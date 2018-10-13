@@ -3,48 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Carrier;
 use Auth;
 
-class CarrierController extends Controller
+class RequestController extends Controller
 {
-    public static function isCarrier()
+    public static function carrier()
     {
         $user = Auth::user();
-
-        if(!$user || !$user->isCarrier())
-        {
-            return;
-        }
-        
-        return "isCarrier";
+        $info = DB::table('request')->where('carrier_id', $user->id);
+        return $info; 
 
     }
-    public static function info()
+    public static function sender()
     {
         $user = Auth::user();
-        $info = DB::table('carrier')->where('user_id', $user->id);
+        $info = DB::table('request')->where('sender_id', $user->id);
         return $info;    
 
+    }
+
+    public static function details(Request $request)
+    {
+        $req = App::make(App\Models\Request::class);
+        $req->sender_id = Auth::user()->id;
+        $req->carrier_id = DB::table('user')->where('username', $request->carrier_name)->first()->value('id');
+        $req->eth_id = $request->eth_id;
+        $req->route_id = DB::table('carrier')->where('origin', src)->where('dest', dest)->where('user_id',$req->carrier_id)->first()->value('id');         
+        $req->save();
+
+        return $req;
+    }
+
+    public static function updateState(App\Models\Request $req, Request $request) 
+    {
+        DB::table('request')->where('id', $req->id)->update(['state' => $request->state]);
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {   
-        $carrier = App::make(Carrier::class);
-        
-        if($request->dest)
-            $carrier = $carrier->where('dest', $request->dest);
-        
-        if($request->origin)
-            $carrier = $carrier->where('origin', $request->origin);
-
-        $carrier = $carrier->get();
-        
-        return carrier;
+    public function index()
+    {
+        //
     }
 
     /**
@@ -65,13 +66,7 @@ class CarrierController extends Controller
      */
     public function store(Request $request)
     {
-        $carrier = App::make(Carrier::class);
-        $carrier->user_id = Auth::user()->id;   
-        $carrier->date = $request->date;
-        $carrier->origin = $request->origin;
-        $carrier->dest = $request->dest;
-        $carrier->save();
-        return $carrier;
+        //
     }
 
     /**

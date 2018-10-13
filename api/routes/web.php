@@ -17,3 +17,19 @@ Route::get('checklogin', 'LoginController@checklogin');
 Route::get('register', 'RegistrationController@store');
 
 Route::get('logout', 'LoginController@logout');
+
+Route::get('iscarrier', 'CarrierController@isCarrier');
+
+Route::get('carrier/', 'CarrierController@index');
+
+Route::get('carrier/info', 'CarrierController@info');
+
+Route::get('carrier/store', 'CarrierController@store');
+
+Route::get('request/carrier','RequestController@carrier');
+
+Route::get('request/sender','RequestController@sender');
+
+Route::get('request/details','RequestController@details');
+
+Route::get('request/update/{req}','RequestController@updateState');

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     protected $table = 'users';
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name','username', 'email', 'password'];
     protected $hidden = ['id', 'password', 'created_at', 'updated_at'];
 
     public static function findByName($name)
@@ -19,8 +19,8 @@ class User extends Authenticatable
         return 'email';
     }
 
-    // public function isCarrier()
-    // {
-        // return ($this->role === "carrier");
-    // }
+    public function isCarrier()
+    {
+        return ($this->role === "carrier");
+    }
 }
