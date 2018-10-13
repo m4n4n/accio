@@ -28,17 +28,17 @@
             @if(isset(Auth::user()->email))
                 <script>window.location="/main/successlogin";</script>
             @endif
-            @if ($message = Session::get('erro'))
+            @if ($message = Session::get('error'))
             <div class="alert">
-            <button type="button" class="close">x</button>
-            <strong>{{ $message }} </strong>
+                <button type="button" class="close">x</button>
+                <strong>{{ $message }} </strong>
             </div>
             @endif
             @if(count($errors) > 0)
                 <div class="alert">
                     @foreach($errors->all() as $error)
-                  <li>  {{ $error}} </li>
-                  @endforeach
+                    <li>  {{ $error}} </li>
+                     @endforeach
                 </div>
             @endif
             <form method="post" action="{{ url('/main/checklogin') }}">
@@ -52,5 +52,6 @@
                 <input type="submit" name="login" class="btn btn-primary" value="login" />
 
             </form>
+        </div>
     </body>
 </html>

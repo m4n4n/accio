@@ -38,13 +38,13 @@
             @endif
             <div
         </div>
-           <!--  @if ($message = Session::get('erro'))
+<!--              @if ($message = Session::get('error'))
             <div class="alert">
             <button type="button" class="close">x</button>
             <strong>{{ $message }} </strong>
             </div>
             @endif
-            @if(count($erros) > 0)
+            @if(count($errors) > 0)
                 <div class="alert">
                     @foreach($errors->all() as $error)
                   <li>  {{ $error}} </li>
