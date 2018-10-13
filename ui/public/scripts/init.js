@@ -14,8 +14,12 @@ $(document).ready(function(){
     url = laravel + '/checklogin';
 	
 	$.ajax({
-		   type: 'get',
-		   url: url,
+			type: 'get',
+			url: url,
+			crossDomain: true,
+			xhrFields: {
+				withCredentials: true
+			},
 	   	   success: function(response) {
 		      user =  response;
 		      userReload();
@@ -24,9 +28,7 @@ $(document).ready(function(){
 });
 
 function userReload() {
-		console.log("'*************");
-		console.log(user);
-		if(Object.keys(user).length !== 0) {
+		if(user && Object.keys(user).length !== 0) {
 			document.getElementById('signupnavmob').style.display =  'none';
 			document.getElementById('signupnav').style.display =  'none';
 			document.getElementById('loginnavmob').style.display =  'none';
@@ -35,6 +37,8 @@ function userReload() {
 			document.getElementById('usernavmob').innerHTML = user.name;
 			document.getElementById('usernavmob').style.display =  'block';
 			document.getElementById('usernav').style.display =  'block';
+			document.getElementById('logoutnav').style.display =  'block';
+			document.getElementById('logoutnavmob').style.display =  'block';
 		} else {
 			document.getElementById('signupnavmob').style.display =  'block';
 			document.getElementById('signupnav').style.display =  'block';
@@ -43,5 +47,8 @@ function userReload() {
 
 			document.getElementById('usernavmob').style.display =  'none';
 			document.getElementById('usernav').style.display =  'none';
+			document.getElementById('logoutnav').style.display =  'none';
+			document.getElementById('logoutnavmob').style.display =  'none';
+
 		}
 	}
