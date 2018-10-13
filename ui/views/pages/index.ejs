@@ -1,0 +1,33 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript">
+      var laravel = <%- JSON.stringify(uri.laravel)%>;
+    </script>
+    <% include ../partials/head %>
+</head>
+<body>
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <!-- <h1 class="header center header-font">Hermes</h1> -->
+      </div>
+    </div>
+    <div class="parallax"><img src="assets/background1.jpg"></div>
+  </div>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>

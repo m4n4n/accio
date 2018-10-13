@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+// @import "node_modules/materialize-css/sass/materialize";
+
+// theme
+$white: #FEEFFF;
+$bluish-white: #DEF2F1;
+$blue: #3AAFA9;
+$dark-blue: #40464C;
+$black: #17252A;
+
+body {
+	background-color: $dark-blue;
+}
+
+nav ul a {
+	color: $bluish-white;	
+	background-color: $dark-blue;	
+}
+nav {
+	background-color: $dark-blue;	
+}
+nav .brand-logo {
+  color: $blue;
+  font-family: canada-type-gibson,sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.sidenav-trigger {
+  color: $blue;
+}
+
+.page-footer , .page-footer .footer-copyright{
+	background-color: $dark-blue;
+}
+.parallax-container {
+  min-height: 80vh;
+  line-height: 0;
+  height: auto;
+  color: $blue;
+  background-color: rgba(4,4,4,0.6)
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+.header-font {
+	color: $black;
+}
+
+.parallax {
+	>img {
+		height: 100vh;
+	}
+}
+
+
+.hide {
+  display: none;
+}
