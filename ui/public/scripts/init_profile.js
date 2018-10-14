@@ -3,7 +3,10 @@
 
     $('.sidenav').sidenav();
     $('.parallax').parallax();
-
+    $('#joincarrierprofile').show();
+  	$('#addroutemodaltrigger').hide();
+  	$('#becomecarrier').show();
+  	$('#addaroute').hide();
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
@@ -60,6 +63,23 @@ $('#logoutnav').on('click', function(e) {
 	   success: function(response) {
 	      user = null;
 	      userReload();
+	   }
+	});
+});
+
+$('#addroutesubmit').on('click', function(e) {
+	e.preventDefault();
+	var url = laravel + '/carrier/store';
+	$.ajax({
+	   	type: 'get',
+	   	url: url,
+		crossDomain: true,
+		xhrFields: {
+			withCredentials: true
+		},
+	   data: $('#addrouteform').serialize(),
+	   success: function(response) {
+	   		console.log("chal gaya");
 	   }
 	});
 });
@@ -131,6 +151,11 @@ function isCarrier(user) {
 		},
 	   success: function(response) {
 	      if(response && Object.keys(response).length !== 0) {
+	      	isCarrier = true;
+	      	$('#joincarrierprofile').hide();
+	      	$('#addroutemodaltrigger').show();
+	      	$('#becomecarrier').hide();
+	      	$('#addaroute').show();
 	      	fetchCarrierData(user);
 	      }
 	   }
@@ -171,10 +196,47 @@ function requestsSender(user) {
 	});
 }
 
+var groupBy = function(xs, key) {
+  return xs.reduce(function(rv, x) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};
+
 function carrierDataLoad(res) {
-	console.log(res);
-}
+	var p=groupBy(res, 'state');
+	  		$('#carrier-route-results').empty();
+	for (var key in p) {
+  		var state = key;
+	     var head = "<div class='subheader-font'>Status:"+state+"<div><table><thead><tr><th>Sender ID</th><th>Route ID</th><th>Ethereum Id</th><th>Time Created</th></tr></thead>";
+	     var body = "<tbody>";
+		  for(var i=0; i<p[key].length; i++)
+		    {
+		        var td1="<tr><td>"+p[key][i]["sender_id"]+"</td>";
+		       	var td2="<td>"+p[key][i]["route_id"]+"</td>";
+		        var td3="<td>"+p[key][i]["eth_id"]+"</td>";
+		        var td4="<td>"+p[key][i]["time_created"]+"</td></tr>";
+		       	body +=td1+td2+td3+td4;
+		     }
+		     $('#carrier-route-results').append(head+body+"</tbody></table>");
+		}
+	}
 
 function senderDataLoad(res) {
-	console.log(res);
+	var p=groupBy(res, 'state');
+	$('#sender-route-results').empty();
+	for (var key in p) {
+  		var state = key;
+	     var head = "<div class='subheader-font'>Status:"+state+"<div><table><thead><tr><th>Carrier ID</th><th>Route ID</th><th>Ethereum Id</th><th>Time Created</th></tr></thead>";
+	     var body = "<tbody>";
+		  for(var i=0; i<p[key].length; i++)
+		    {
+		        var td1="<tr><td>"+p[key][i]["carrier_id"]+"</td>";
+		       	var td2="<td>"+p[key][i]["route_id"]+"</td>";
+		        var td3="<td>"+p[key][i]["eth_id"]+"</td>";
+		        var td4="<td>"+p[key][i]["time_created"]+"</td></tr>";
+		       	body +=td1+td2+td3+td4;
+		     }
+		     $('#sender-route-results').append(head+body+"</tbody></table>");
+		}
 }

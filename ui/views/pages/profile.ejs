@@ -15,25 +15,34 @@
 	<main>
     <div class="row container">
       <div class="col">
-        <h3 class="sub-header center header-font header-left">
+        <h3 class="subheader-font center header-font header-left">
           Send a parcel 
           </h3>
           <div class="btn modal-trigger" href="#searchmodal"  id="searchmodalprofile">
             Send
           </div>
+          <% include ../partials/senderroutestable %>
       </div>
 		  <div class="col right">
-		    <h3 class="sub-header center header-font header-left">
+		    <h3 class="subheader-font center header-font header-left" id="becomecarrier">
           Become a Carrier?
+        </h3>
+        <h3 class="subheader-font center header-font header-left" id="addaroute">
+          Add a new route
         </h3>
           <div class="btn modal-trigger" href="#joincarriermodal"  id="joincarrierprofile">
             Join
           </div>
+          <div class="btn modal-trigger" href="#addroutemmodal"  id="addroutemodaltrigger">
+            Plus
+          </div>
+          <% include ../partials/carrierroutetable %>
       </div>
     </div>
 	</main>
 <footer>
     <% include ../partials/footer %>
 </footer>
+<% include ../partials/addroutemmodal %>
 </body>
 </html>
