@@ -33,3 +33,5 @@ Route::get('request/sender','RequestController@sender');
 Route::get('request/details','RequestController@details');
 
 Route::get('request/update/{req}','RequestController@updateState');
+
+Route::get('packagerequest','PackageRequestController@save');

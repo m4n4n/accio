@@ -14,11 +14,13 @@ class RegistrationController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'username' => 'required',
             'email' => 'required|email',
             'password' => 'required'
         ]);
         $user = App::make(User::class);
         $user->name = $request->name;
+        $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();

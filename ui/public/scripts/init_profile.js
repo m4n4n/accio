@@ -67,6 +67,7 @@ $('#logoutnav').on('click', function(e) {
 	});
 });
 
+
 $('#addroutesubmit').on('click', function(e) {
 	e.preventDefault();
 	var url = laravel + '/carrier/store';
@@ -77,6 +78,7 @@ $('#addroutesubmit').on('click', function(e) {
 		xhrFields: {
 			withCredentials: true
 		},
+
 	   data: $('#addrouteform').serialize(),
 	   success: function(response) {
 	   		console.log("chal gaya");
@@ -102,7 +104,7 @@ $('#searchsubmit').on('click', function(e) {
 	      user = response;
 	      console.log(JSON.stringify(user));
 
-	     document.getElementById("tablehead").style.display="table-header-group";
+	     document.getElementById("tablehead").style.display=" table-header-group";
 	      
 	      // var tbl=$("<table/>").attr("id","mytable");
 		  // $("#tablebody").append(tbl);
@@ -113,9 +115,9 @@ $('#searchsubmit').on('click', function(e) {
 		        var td3="<td>"+user[i]["date"]+"</td>";
 		        var td4="<td>"+user[i]["origin"]+"</td>";
 		        var td5="<td>"+user[i]["dest"]+"</td>";
-		        var td6="<td>"+user[i]["eth_id"]+"</td></tr>";
-
-		       $("#tablebody").append(td1+td2+td3+td4+td5+td6);
+		        var td6="<td>"+user[i]["eth_id"]+"</td>";
+		        var td7="<td>"+"<button id='"+user[i]["user_id"]+"'>Select</button>"+"</td></tr>";
+		       $("#tablebody").append(td1+td2+td3+td4+td5+td6+td7);
 
 		    }  
 	   }
