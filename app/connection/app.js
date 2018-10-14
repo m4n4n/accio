@@ -37,17 +37,23 @@ module.exports = {
 
   initTransaction: function(sender, courier, transaction_id, courier_eth, sender_eth) {
     var self = this;
-
+    console.log(self.web3.currentProvider);
     creator.setProvider(self.web3.currentProvider);
+    self.web3.eth.defaultAccount = self.web3.eth.accounts[0];
     
     var cre;
-    create.deployed().then(function(instance) {
+    creator.deployed().then(function(instance) {
       cre = instance;
-      return cre.createTransaction(sender, courier, transaction_id, courier_eth, sender_eth);
-    }).then(function() {
-      console.log(answer);
-    }).catch(function(e) {
-      console.log(e);
-    });
-  }
+      console.log(sender);
+      console.log(courier);
+      // let requester=self.web3.sendTransaction.request(argsObject);
+      // let gasEstimate = self.web3.eth.estimateGas(requester);
+
+      // let pok = cre.createTransaction.estimateGas(sender, courier, transaction_id, courier_eth, sender_eth, {from: self.web3.eth.defaultAccount});
+        // pok.then(res => {
+        //   console.log(res);
+        // });
+        return cre.createTransaction(sender, courier, transaction_id, courier_eth, sender_eth, {from: self.web3.eth.defaultAccount});
+  });
+}
 }

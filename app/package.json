@@ -21,7 +21,7 @@
     "json-loader": "^0.5.4",
     "style-loader": "^0.13.1",
     "truffle-contract": "^1.1.11",
-    "web3": "^0.20.0"
+    "web3": "^0.16.0"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
