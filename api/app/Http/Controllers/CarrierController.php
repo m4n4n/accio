@@ -26,7 +26,7 @@ class CarrierController extends Controller
     public static function info()
     {
         $user = Auth::user();
-        $info = DB::table('carrier')->where('user_id', $user->id);
+        $info = DB::table('carrier')->where('user_id', $user->id)->get();
         return $info;    
 
     }
@@ -46,7 +46,7 @@ class CarrierController extends Controller
             $carrier = $carrier->where('origin', $request->origin);
 
         $carrier = $carrier->get();
-        return $carrier;
+        return $carrier->load('user');
     }
 
     /**

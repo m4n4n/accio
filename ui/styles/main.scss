@@ -30,7 +30,9 @@ nav .brand-logo {
 p {
   line-height: 2rem;
 }
-
+#navheight{
+  height:70px;
+}
 .sidenav-trigger {
   color: $blue;
 }
@@ -99,7 +101,10 @@ footer.page-footer {
 }
 
 .header-font {
-	color: $black;
+	color: #40464C;
+}
+.subheader-font {
+  color:$white;
 }
 
 .parallax {

@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.locals ={
     site: {
-        title: 'Hermes',
+        title: 'Accio',
         description: 'Need to be written'
     },
     uri: {

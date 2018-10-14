@@ -55,20 +55,20 @@ $('#searchsubmit').on('click', function(e) {
 	      user = response;
 	      console.log(JSON.stringify(user));
 
-	     document.getElementById("tablehead").style.display="block";
+	     document.getElementById("tablehead").style.display="table-header-group";
 	      
-	      var tbl=$("<table/>").attr("id","mytable");
-		  $("#tablebody").append(tbl);
+	      // var tbl=$("<table/>").attr("id","mytable");
+		  // $("#tablebody").append(tbl);
 		  for(var i=0;i<user.length;i++)
 		    {
-		        var tr="<tr>";
-		        var td1="<td>"+user[i]["date"]+"</td>";
-		        var td2="<td>"+user[i]["origin"]+"</td>";
-		        var td3="<td>"+user[i]["dest"]+"</td></tr>";
-		        var td4="<td>"+user[i]["location"]+"</td></tr>";
-		        var td5="<td>"+user[i]["eth_id"]+"</td></tr>";
+		        var td1="<tr><td>"+user[i]["user_id"]+"</td>";
+		       	var td2="<td>"+user[i].user.name+"</td>";
+		        var td3="<td>"+user[i]["date"]+"</td>";
+		        var td4="<td>"+user[i]["origin"]+"</td>";
+		        var td5="<td>"+user[i]["dest"]+"</td>";
+		        var td6="<td>"+user[i]["eth_id"]+"</td></tr>";
 
-		       $("#mytable").append(tr+td1+td2+td3+td4+td5);
+		       $("#tablebody").append(td1+td2+td3+td4+td5+td6);
 
 		    }  
 	   }
