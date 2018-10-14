@@ -22,6 +22,26 @@ p {
 .sidenav-trigger {
   color: #3AAFA9; }
 
+#tablehead {
+  display: none; }
+
+.card {
+  background-color: #FEEFFF;
+  position: absolute;
+  right: 150px;
+  width: 400px;
+  height: 65vh;
+  margin-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 40px;
+  float: right;
+  color: #40464C; }
+
+.card-title {
+  text-align: center;
+  color: #FEEFFF; }
+
 .page-footer, .page-footer .footer-copyright {
   background-color: #40464C; }
 
@@ -60,6 +80,19 @@ footer.page-footer {
 
 .parallax > img {
   height: 100vh; }
+
+.searchbox1 {
+  margin-top: 20px; }
+
+.searchbox2 {
+  height: 80vh; }
+
+#searchsubmit {
+  margin-bottom: 20px; }
+
+.searchbar {
+  display: inline-block;
+  padding-right: 30px; }
 
 .hide {
   display: none; }

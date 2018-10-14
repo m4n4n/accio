@@ -1,0 +1,41 @@
+  <!-- Modal Structure -->
+  <div id="searchmodal" class="modal searchbox1">
+    <div class="modal-content searchbox2">
+      <h5>Search Carriers</h5>
+        <div class="row">
+        <form id="searchform" class="col searchform s12">
+          <div class="row searchbar">
+            <div class="input-field col s6" style="width:100%;float:left;">
+              <input id="origin" type="text" name="origin" class="validate">
+              <label for="origin">Origin</label>
+            </div>
+          </div>
+          <div class="row searchbar">
+            <div class="input-field col s6" style="width:100%; float:right;">
+              <input id="dest" type="text" name="dest" class="validate">
+              <label for="dest">Destination</label>
+            </div>
+          </div>
+          <div class="row searchbar">
+            <div class="btn waves-effect waves-light col s4" id="searchsubmit" style="width:100%;float:right;"><i class="material-icons">search</i>
+            </div>
+          </div>
+          <div class="search-results">
+                <table style="width: 100%">
+              <thead id="tablehead">
+                <tr>
+                 <th>Date</th>
+                 <th>Origin</th>
+                 <th>Destination</th>
+                 <th>Ethereum Id</th>
+                </tr>
+              </thead>
+                   <tbody id="tablebody">
+                   
+                   </tbody>
+                </table>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

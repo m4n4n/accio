@@ -35,6 +35,28 @@ p {
   color: $blue;
 }
 
+#tablehead{
+  display:none;
+}
+.card{
+  background-color:$white;
+  position : absolute;
+  right:150px;
+  width:400px;
+  height:65vh;
+  margin-top:30px;
+  padding-left:20px;
+  padding-right:20px;
+  padding-top:40px;
+  float:right;
+  color:$dark-blue;
+}
+
+.card-title{
+  text-align:center;
+  color:$white;
+}
+
 .page-footer , .page-footer .footer-copyright{
 	background-color: $dark-blue;
 }
@@ -85,8 +107,20 @@ footer.page-footer {
 		height: 100vh;
 	}
 }
+.searchbox1 {
+  margin-top:20px;
+}
 
-
+.searchbox2{
+  height:80vh;
+}
+#searchsubmit {
+  margin-bottom:20px;
+}
+.searchbar {
+  display:inline-block;
+  padding-right:30px;
+}
 .hide {
   display: none;
 }

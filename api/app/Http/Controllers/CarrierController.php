@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use App\Models\Carrier;
 use Auth;
+
 
 class CarrierController extends Controller
 {
@@ -43,8 +46,7 @@ class CarrierController extends Controller
             $carrier = $carrier->where('origin', $request->origin);
 
         $carrier = $carrier->get();
-        
-        return carrier;
+        return $carrier;
     }
 
     /**
