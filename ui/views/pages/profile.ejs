@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript">
+    	var laravel = <%- JSON.stringify(uri.laravel)%>;
+    </script><meta charset="UTF-8">
+    <% include ../partials/head %>
+    <script src="scripts/init_profile.js"></script>
+ </head>
+<body>
+	<header>
+    	<% include ../partials/header %>
+	</header>
+	<main>
+    <div class="row container">
+      <div class="col">
+        <h3 class="sub-header center header-font header-left">
+          Send a parcel 
+          </h3>
+          <div class="btn modal-trigger" href="#searchmodal"  id="searchmodalprofile">
+            Send
+          </div>
+      </div>
+		  <div class="col right">
+		    <h3 class="sub-header center header-font header-left">
+          Become a Carrier?
+        </h3>
+          <div class="btn modal-trigger" href="#joincarriermodal"  id="joincarrierprofile">
+            Join
+          </div>
+      </div>
+    </div>
+	</main>
+<footer>
+    <% include ../partials/footer %>
+</footer>
+</body>
+</html>

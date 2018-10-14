@@ -23,6 +23,8 @@ $(document).ready(function(){
 	   	   success: function(response) {
 		      user =  response;
 		      userReload();
+		      isCarrier(user);
+		      requestsSender(user);
 		   }
 	});
 	
@@ -65,14 +67,6 @@ $('#logoutnav').on('click', function(e) {
 
 function userReload() {
 		if(user && Object.keys(user).length !== 0) {
-			// document.getElementById('signupnavmob').style.display =  'none';
-			if(document.getElementById('signupnav')) {
-
-				document.getElementById('signupnav').style.display =  'none';
-			// document.getElementById('loginnavmob').style.display =  'none';
-				document.getElementById('loginnav').style.display =  'none';
-				document.getElementById('mini-profile').style.display =  'none';
-			}
 			document.getElementById('usernav').innerHTML = user.name;
 			document.getElementById('usernavmob').innerHTML = user.name;
 			document.getElementById('usernavmob').style.display =  'block';
@@ -80,13 +74,6 @@ function userReload() {
 			document.getElementById('logoutnav').style.display =  'block';
 			document.getElementById('logoutnavmob').style.display =  'block';
 		} else {
-			// document.getElementById('signupnavmob').style.display =  'block';
-			if(document.getElementById('signupnav')) {
-				document.getElementById('signupnav').style.display =  'block';
-			// document.getElementById('loginnavmob').style.display =  'block';
-				document.getElementById('loginnav').style.display =  'block';
-				document.getElementById('mini-profile').style.display =  'block';
-			}
 			document.getElementById('usernavmob').style.display =  'none';
 			document.getElementById('usernav').style.display =  'none';
 			document.getElementById('logoutnav').style.display =  'none';
@@ -94,3 +81,62 @@ function userReload() {
 
 		}
 	}
+
+function isCarrier(user) {
+	var url = laravel + '/iscarrier';
+	$.ajax({
+	   	type: 'get',
+	   	url: url,
+		crossDomain: true,
+		xhrFields: {
+			withCredentials: true
+		},
+	   success: function(response) {
+	      if(response && Object.keys(response).length !== 0) {
+	      	fetchCarrierData(user);
+	      }
+	   }
+	});
+}
+
+function fetchCarrierData(user) {
+	var url = laravel + '/request/carrier';
+	$.ajax({
+	   	type: 'get',
+	   	url: url,
+		crossDomain: true,
+		xhrFields: {
+			withCredentials: true
+		},
+	   success: function(response) {
+	      if(response && Object.keys(response).length !== 0) {
+	      	carrierDataLoad(response);
+	      }
+	   }
+	});
+}
+
+function requestsSender(user) {
+	var url = laravel + '/request/sender';
+	$.ajax({
+	   	type: 'get',
+	   	url: url,
+		crossDomain: true,
+		xhrFields: {
+			withCredentials: true
+		},
+	   success: function(response) {
+	      if(response && Object.keys(response).length !== 0) {
+	      	senderDataLoad(response);
+	      }
+	   }
+	});
+}
+
+function carrierDataLoad(res) {
+	console.log(res);
+}
+
+function senderDataLoad(res) {
+	console.log(res);
+}

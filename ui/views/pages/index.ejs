@@ -6,8 +6,10 @@
     <script type="text/javascript">
       var laravel = <%- JSON.stringify(uri.laravel)%>;
     </script>
+    <meta charset="UTF-8">
     <% include ../partials/head %>
-</head>
+    <script src="scripts/init.js"></script>
+ </head>
 <body>
 
 <header>
@@ -17,17 +19,40 @@
 <main>
   <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
-      <div class="container">
-        <!-- <h1 class="header center header-font">Hermes</h1> -->
+      <div class="row container">
+        <div class="col">
+          <h1 class="header center header-font header-left">Hermes</h1>
+        </div>
+        <div class="col right">
+          <div class="card mini-profile" id="mini-profile">
+          <div class="test">
+            <div class="card-content span-block">
+              <span class="mini-profile-sign">New to hermes?</span>
+              <span class="btn modal-trigger" href="#signupmodal"  id="signupnav">
+                Sign Up
+              </span>
+              <span class="mini-profile-or">
+                <span>OR</span>
+              </span>
+              <span class="mini-profile-login">Already an existing user?</span>
+              <span class="btn modal-trigger" href="#loginmodal"  id="loginnav">
+                Login
+              </span>
+          </div>
+        </div>
+      </div>
+        </div>
       </div>
     </div>
     <div class="parallax"><img style "object-fit:cover;overflow = hidden;" src="assets/background.jpg"></div>
   </div>
 </main>
 
+<% include ../partials/loginmodal %>
+<% include ../partials/signupmodal %>
 <footer>
     <% include ../partials/footer %>
 </footer>
-
+<script src="scripts/script.js"></script>
 </body>
 </html>

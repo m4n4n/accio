@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
+var profile = require('./routes/profile');
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -30,6 +31,7 @@ app.locals ={
     }
 }
 app.use('/', index);
+app.use('/profile', profile);
 
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

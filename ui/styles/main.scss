@@ -43,7 +43,7 @@ p {
   line-height: 0;
   height: auto;
   color: $blue;
-  background-color: rgba(4,4,4,0.6)
+  background-color: rgba(4,4,4,0)
 }
   .parallax-container .section {
     width: 100%;
@@ -89,4 +89,26 @@ footer.page-footer {
 
 .hide {
   display: none;
+}
+
+.mini-profile {
+  height: 60vh;
+  // margin-right: 100px;
+}
+
+.span-block {
+  color: $dark-blue;
+  .modal-trigger {
+    color: white;
+  }
+  font-size: 24px;
+  display: flex;
+  line-height: 12vh;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-vertical {
+  flex-direction: column;
+  justify-content: center;
 }
